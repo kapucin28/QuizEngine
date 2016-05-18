@@ -35,6 +35,7 @@ public class QuizMain extends Application {
 
     // Stage layout setup-----------------------------------------------------------------------------------------------
     private void layoutSetup() {
+        scene.getStylesheets().add(getClass().getResource("CSS.css").toExternalForm());
         stage.setTitle("Quiz Maker");
         stage.setScene(scene);
         stage.show();
