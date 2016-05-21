@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import quizContentCreating.QuizContent;
 
@@ -29,4 +30,23 @@ class QuizMaker extends Pane{
     private ObservableList<QuizContent> list = FXCollections.observableArrayList();
     //------------------------------------------------------------------------------------------------------------------
 
+    // Control panes variables------------------------------------------------------------------------------------------
+    private final GridPane scorePane = new GridPane();
+    private final GridPane quizPane = new GridPane();
+    private final GridPane root = new GridPane();
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Constructor------------------------------------------------------------------------------------------------------
+    QuizMaker(){
+        layoutSetup();
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Layout setup method----------------------------------------------------------------------------------------------
+    private void layoutSetup(){
+        root.add(scorePane, 0, 0);
+        root.add(quizPane, 0, 1);
+        getChildren().add(root);
+    }
+    //------------------------------------------------------------------------------------------------------------------
 }
