@@ -1,5 +1,6 @@
 package quizContentCreating;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -10,6 +11,7 @@ public class CreatingQuestions {
 
     // Managing questions variables-------------------------------------------------------------------------------------
     private String question;
+    private static byte[] bytes;
     private static final String path = "Desktop/quiz.dat";  // Any location & filename
     private static RandomAccessFile file;
     //------------------------------------------------------------------------------------------------------------------
@@ -30,6 +32,21 @@ public class CreatingQuestions {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Reading questions method-----------------------------------------------------------------------------------------
+    private static byte[] readFromFile(String path, int position, int size){
+        try {
+            file = new RandomAccessFile(path, "r");
+            file.seek(position);
+            bytes = new byte[size];
+            file.read(bytes);
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytes;
     }
     //------------------------------------------------------------------------------------------------------------------
 
