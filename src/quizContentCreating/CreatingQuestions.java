@@ -1,6 +1,5 @@
 package quizContentCreating;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -18,11 +17,11 @@ public class CreatingQuestions {
 
     // Constructor------------------------------------------------------------------------------------------------------
     public CreatingQuestions(){
-
+        quizQuestions();
     }
     //------------------------------------------------------------------------------------------------------------------
 
-    // Writing questions to file----------------------------------------------------------------------------------------
+    // Writing questions to file method---------------------------------------------------------------------------------
     private static void writeToFile(String path, String data, int position){
         try {
             file = new RandomAccessFile(path, "rw");
@@ -47,6 +46,16 @@ public class CreatingQuestions {
             e.printStackTrace();
         }
         return bytes;
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Questions--------------------------------------------------------------------------------------------------------
+    private void quizQuestions(){
+        writeToFile(path, "1 = 1", 0);
+        writeToFile(path, "1 != 1", 6);
+        writeToFile(path, "Java = programming language", 13);
+        writeToFile(path, "Java != programming language", 41);
+        writeToFile(path, "This is a cool app", 69);
     }
     //------------------------------------------------------------------------------------------------------------------
 
