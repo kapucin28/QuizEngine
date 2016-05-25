@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
@@ -42,6 +44,7 @@ class QuizMaker extends Pane{
     // Constructor------------------------------------------------------------------------------------------------------
     QuizMaker(){
         layoutSetup();
+        tableSetup();
     }
     //------------------------------------------------------------------------------------------------------------------
 
@@ -68,6 +71,24 @@ class QuizMaker extends Pane{
         root.add(quizPane, 0, 1);
         getChildren().add(root);
         //--------------------------------------------------------------------------------------------------------------
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Table setup method-----------------------------------------------------------------------------------------------
+    private void tableSetup(){
+        tableView.setEditable(true);
+        answerColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        questionColumn.setCellValueFactory(new PropertyValueFactory<>("question"));
+        answerColumn.setCellValueFactory(new PropertyValueFactory<>("answer"));
+        resultColumn.setCellValueFactory(new PropertyValueFactory<>("result"));
+
+        answerColumn.setOnEditCommit(e -> {
+            TableColumn.CellEditEvent<QuizContent, String> cellEdit;
+            cellEdit = e;
+            QuizContent qz = cellEdit.getRowValue();
+            qz.setAnswer(cellEdit.getNewValue());
+        });
     }
     //------------------------------------------------------------------------------------------------------------------
 }
