@@ -2,6 +2,7 @@ package quizRendering;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -54,14 +55,25 @@ class QuizMaker extends Pane{
         // Table layout-------------------------------------------------------------------------------------------------
         tableView.setItems(list);
         tableView.setPrefHeight(bounds.getHeight() / 2 - 50);
-        tableView.setPrefWidth(bounds.getWidth() / 2);
+        tableView.setPrefWidth(bounds.getWidth() / 2 - 20);
         tableView.getColumns().addAll(questionColumn, answerColumn, resultColumn);
         //--------------------------------------------------------------------------------------------------------------
 
         // QuizPane layout----------------------------------------------------------------------------------------------
+        quizPane.setPadding(new Insets(0, 10, 0, 10));
         quizPane.setPrefHeight(bounds.getHeight() / 2 - 50);
-        quizPane.setPrefWidth(bounds.getWidth() / 2);
+        quizPane.setPrefWidth(bounds.getWidth() / 2 - 20);
         quizPane.add(tableView, 0, 0);
+        //--------------------------------------------------------------------------------------------------------------
+
+        // ScorePane layout---------------------------------------------------------------------------------------------
+        scorePane.setPadding(new Insets(5, 200, 0, 200));
+        scorePane.setHgap(50);
+        scorePane.setPrefWidth(bounds.getWidth() / 2);
+        scorePane.setPrefHeight(35);
+        scorePane.add(newQuiz, 0, 0);
+        scorePane.add(pointsLabel, 1, 0);
+        scorePane.add(submit, 2, 0);
         //--------------------------------------------------------------------------------------------------------------
 
         // Root layout--------------------------------------------------------------------------------------------------
@@ -82,6 +94,10 @@ class QuizMaker extends Pane{
         questionColumn.setCellValueFactory(new PropertyValueFactory<>("question"));
         answerColumn.setCellValueFactory(new PropertyValueFactory<>("answer"));
         resultColumn.setCellValueFactory(new PropertyValueFactory<>("result"));
+
+        questionColumn.setPrefWidth(465);
+        answerColumn.setPrefWidth(100);
+        resultColumn.setPrefWidth(100);
 
         answerColumn.setOnEditCommit(e -> {
             TableColumn.CellEditEvent<QuizContent, String> cellEdit;
