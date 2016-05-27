@@ -12,13 +12,27 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
+import quizContentCreating.CreatingQuestions;
 import quizContentCreating.QuizContent;
+
+import java.io.File;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 17-May-16.
  */
 class QuizMaker extends Pane{
+
+    // Loading quiz content variables-----------------------------------------------------------------------------------
+    private Stage fileStage;
+    private FileChooser fileChooser;
+    private File file;
+    private CreatingQuestions creatingQuestions;
+    private QuizContent quizContent;
+    private String question;
+    //------------------------------------------------------------------------------------------------------------------
 
     // Score & user actions variables-----------------------------------------------------------------------------------
     private Label score = new Label();
@@ -46,6 +60,7 @@ class QuizMaker extends Pane{
     QuizMaker(){
         layoutSetup();
         tableSetup();
+        loadQuiz();
     }
     //------------------------------------------------------------------------------------------------------------------
 
@@ -67,13 +82,14 @@ class QuizMaker extends Pane{
         //--------------------------------------------------------------------------------------------------------------
 
         // ScorePane layout---------------------------------------------------------------------------------------------
-        scorePane.setPadding(new Insets(5, 200, 0, 200));
+        scorePane.setPadding(new Insets(5, 100, 0, 200));
         scorePane.setHgap(50);
         scorePane.setPrefWidth(bounds.getWidth() / 2);
         scorePane.setPrefHeight(35);
         scorePane.add(newQuiz, 0, 0);
-        scorePane.add(pointsLabel, 1, 0);
-        scorePane.add(submit, 2, 0);
+        scorePane.add(score, 1, 0);
+        scorePane.add(pointsLabel, 2, 0);
+        scorePane.add(submit, 3, 0);
         //--------------------------------------------------------------------------------------------------------------
 
         // Root layout--------------------------------------------------------------------------------------------------
@@ -105,6 +121,13 @@ class QuizMaker extends Pane{
             QuizContent qz = cellEdit.getRowValue();
             qz.setAnswer(cellEdit.getNewValue());
         });
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Creating new quiz method-----------------------------------------------------------------------------------------
+    private void loadQuiz(){
+        list.clear();
+
     }
     //------------------------------------------------------------------------------------------------------------------
 }
