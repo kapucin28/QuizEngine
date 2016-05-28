@@ -23,7 +23,7 @@ import java.io.File;
 /**
  * Created by TIMBULI REMUS K@puc!n on 17-May-16.
  */
-class QuizMaker extends Pane{
+class QuizMaker extends Pane {
 
     // Loading quiz content variables-----------------------------------------------------------------------------------
     private Stage fileStage;
@@ -57,7 +57,7 @@ class QuizMaker extends Pane{
     //------------------------------------------------------------------------------------------------------------------
 
     // Constructor------------------------------------------------------------------------------------------------------
-    QuizMaker(){
+    QuizMaker() {
         layoutSetup();
         tableSetup();
         loadQuiz();
@@ -66,7 +66,7 @@ class QuizMaker extends Pane{
 
     // Layout setup method----------------------------------------------------------------------------------------------
     @SuppressWarnings("unchecked")
-    private void layoutSetup(){
+    private void layoutSetup() {
         // Table layout-------------------------------------------------------------------------------------------------
         tableView.setItems(list);
         tableView.setPrefHeight(bounds.getHeight() / 2 - 50);
@@ -103,7 +103,7 @@ class QuizMaker extends Pane{
     //------------------------------------------------------------------------------------------------------------------
 
     // Table setup method-----------------------------------------------------------------------------------------------
-    private void tableSetup(){
+    private void tableSetup() {
         tableView.setEditable(true);
         answerColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -125,9 +125,24 @@ class QuizMaker extends Pane{
     //------------------------------------------------------------------------------------------------------------------
 
     // Creating new quiz method-----------------------------------------------------------------------------------------
-    private void loadQuiz(){
+    private void loadQuiz() {
         list.clear();
+        fileStage = new Stage();
+        fileChooser = new FileChooser();
+        file = fileChooser.showOpenDialog(fileStage);
+        if (file != null) {
+            try {
+                for (int i = 0; i < 10; i++) {
+                    creatingQuestions = new CreatingQuestions();
+                    quizContent = new QuizContent("", "", "");
+                    question = creatingQuestions.getQuestion();
+                    quizContent.setQuestion(question);
+                    tableView.getItems().add(quizContent);
+                }
+            } catch (Exception e) {
 
+            }
+        }
     }
     //------------------------------------------------------------------------------------------------------------------
 }
