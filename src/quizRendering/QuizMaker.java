@@ -1,5 +1,6 @@
 package quizRendering;
 
+import alerts.EmptyAlert;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -140,7 +141,7 @@ class QuizMaker extends Pane {
                     tableView.getItems().add(quizContent);
                 }
             } catch (Exception e) {
-
+                new EmptyAlert();
             }
         }
     }
