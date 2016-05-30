@@ -1,6 +1,8 @@
 package quizRendering;
 
 import alerts.EmptyAlert;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -62,6 +64,7 @@ class QuizMaker extends Pane {
         layoutSetup();
         tableSetup();
         loadQuiz();
+        submitAnswers();
     }
     //------------------------------------------------------------------------------------------------------------------
 
@@ -127,23 +130,71 @@ class QuizMaker extends Pane {
 
     // Creating new quiz method-----------------------------------------------------------------------------------------
     private void loadQuiz() {
-        list.clear();
-        fileStage = new Stage();
-        fileChooser = new FileChooser();
-        file = fileChooser.showOpenDialog(fileStage);
-        if (file != null) {
-            try {
-                for (int i = 0; i < 10; i++) {
-                    creatingQuestions = new CreatingQuestions();
-                    quizContent = new QuizContent("", "", "");
-                    question = creatingQuestions.getQuestion();
-                    quizContent.setQuestion(question);
-                    tableView.getItems().add(quizContent);
+        newQuiz.setOnAction(e -> {
+            list.clear();
+            fileStage = new Stage();
+            fileChooser = new FileChooser();
+            file = fileChooser.showOpenDialog(fileStage);
+            if (file != null) {
+                try {
+                    for (int i = 0; i < 10; i++) {
+                        creatingQuestions = new CreatingQuestions();
+                        quizContent = new QuizContent("", "", "");
+                        question = creatingQuestions.getQuestion();
+                        quizContent.setQuestion(question);
+                        tableView.getItems().add(quizContent);
+                    }
+                } catch (Exception em) {
+                    new EmptyAlert();
                 }
-            } catch (Exception e) {
-                new EmptyAlert();
             }
-        }
+        });
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    // Submit method----------------------------------------------------------------------------------------------------
+    private void submitAnswers() {
+        submit.setOnAction(e -> {
+            IntegerProperty x = new SimpleIntegerProperty(0);
+            for (QuizContent q : list) {
+                if (q.getQuestion().contains("1 = 1") && q.getAnswer().equals("true")) {
+                    x.set(x.get() + 1);
+                    score.setText(Integer.toString(x.get()));
+                }
+                if (q.getQuestion().contains("1 = 1") && !q.getAnswer().equals("true")) {
+                    q.setResult("true");
+                }
+                if (q.getQuestion().contains("1 != 1") && q.getAnswer().equals("false")) {
+                    x.set(x.get() + 1);
+                    score.setText(Integer.toString(x.get()));
+                }
+                if (q.getQuestion().contains("1 != 1") && !q.getAnswer().equals("false")) {
+                    q.setResult("true");
+                }
+                if (q.getQuestion().contains("Java = programming language") && q.getAnswer().equals("true")) {
+                    x.set(x.get() + 1);
+                    score.setText(Integer.toString(x.get()));
+                }
+                if (q.getQuestion().contains("Java = programming language") && !q.getAnswer().equals("true")) {
+                    q.setResult("true");
+                }
+                if (q.getQuestion().contains("Java != programming language") && q.getAnswer().equals("false")) {
+                    x.set(x.get() + 1);
+                    score.setText(Integer.toString(x.get()));
+                }
+                if (q.getQuestion().contains("Java != programming language") && !q.getAnswer().equals("false")) {
+                    q.setResult("true");
+                }
+                if (q.getQuestion().contains("This is a cool app") && q.getAnswer().equals("true")) {
+                    x.set(x.get() + 1);
+                    score.setText(Integer.toString(x.get()));
+                }
+                if (q.getQuestion().contains("This is a cool app") && !q.getAnswer().equals("true")) {
+                    q.setResult("true");
+                }
+                tableView.refresh();
+            }
+        });
     }
     //------------------------------------------------------------------------------------------------------------------
 }

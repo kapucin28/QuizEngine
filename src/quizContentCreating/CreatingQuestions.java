@@ -12,14 +12,18 @@ public class CreatingQuestions {
     private String question;
     private String[] questions;
     private static byte[] bytes;
-    private static final String path = "Desktop/quiz.dat";  // Any location & filename
+    private static final String path = "D:/Downloads/quiz.dat";  // Any location & filename
     private static RandomAccessFile file;
     //------------------------------------------------------------------------------------------------------------------
 
     // Constructor------------------------------------------------------------------------------------------------------
     public CreatingQuestions() {
         quizQuestions();
-        readQuestions();
+        try {
+            readQuestions();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //------------------------------------------------------------------------------------------------------------------
 
@@ -37,16 +41,12 @@ public class CreatingQuestions {
     //------------------------------------------------------------------------------------------------------------------
 
     // Reading questions method-----------------------------------------------------------------------------------------
-    private static byte[] readFromFile(String path, int position, int size) {
-        try {
-            file = new RandomAccessFile(path, "r");
-            file.seek(position);
-            bytes = new byte[size];
-            file.read(bytes);
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private static byte[] readFromFile(String path, int position, int size) throws IOException {
+        file = new RandomAccessFile(path, "r");
+        file.seek(position);
+        bytes = new byte[size];
+        file.read(bytes);
+        file.close();
         return bytes;
     }
     //------------------------------------------------------------------------------------------------------------------
@@ -62,24 +62,20 @@ public class CreatingQuestions {
     //------------------------------------------------------------------------------------------------------------------
 
     // Reading questions method-----------------------------------------------------------------------------------------
-    private void readQuestions() {
+    private void readQuestions() throws IOException {
         questions = new String[]{new String(readFromFile(path, 0, 5)),
                 new String(readFromFile(path, 6, 6)),
                 new String(readFromFile(path, 13, 27)),
                 new String(readFromFile(path, 41, 28)),
                 new String(readFromFile(path, 69, 18))
         };
-        question = questions[(int) (Math.random() * 12)];
+        question = questions[(int) (Math.random() * 5)];
     }
     //------------------------------------------------------------------------------------------------------------------
 
     // Getters & Setters------------------------------------------------------------------------------------------------
     public String getQuestion() {
         return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
     }
     //------------------------------------------------------------------------------------------------------------------
 }
