@@ -7,6 +7,9 @@ import javafx.stage.StageStyle;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 29-May-16.
+ *
+ *      This class represents the empty alert which will popup
+ * when the user tries to load an empty file
  */
 public class EmptyAlert {
 
