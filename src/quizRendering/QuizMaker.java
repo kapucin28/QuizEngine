@@ -25,6 +25,9 @@ import java.io.File;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 17-May-16.
+ *
+ *      This class represents the GUI structure and
+ * user content managing
  */
 class QuizMaker extends Pane {
 
