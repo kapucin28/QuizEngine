@@ -5,6 +5,8 @@ import java.io.RandomAccessFile;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 17-May-16.
+ *
+ *      This is the class that creates the questions
  */
 public class CreatingQuestions {
 
