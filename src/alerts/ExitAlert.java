@@ -7,6 +7,9 @@ import javafx.stage.StageStyle;
 
 /**
  * Created by TIMBULI REMUS K@puc!n on 18-May-16.
+ *
+ *      This class represents the exit alert which will popup
+ * when the user tries to exit the program
  */
 public class ExitAlert {
 
