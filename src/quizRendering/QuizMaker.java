@@ -1,12 +1,12 @@
 package quizRendering;
 
 import alerts.EmptyAlert;
+import interfaces.Scale;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -16,7 +16,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import quizContentCreating.CreatingQuestions;
 import quizContentCreating.QuizContent;
@@ -29,7 +28,7 @@ import java.io.File;
  *      This class represents the GUI structure and
  * user content managing
  */
-class QuizMaker extends Pane {
+class QuizMaker extends Pane implements Scale{
 
     // Loading quiz content variables-----------------------------------------------------------------------------------
     private Stage fileStage;
@@ -56,7 +55,6 @@ class QuizMaker extends Pane {
     //------------------------------------------------------------------------------------------------------------------
 
     // Control panes variables------------------------------------------------------------------------------------------
-    private final Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
     private final GridPane scorePane = new GridPane();
     private final GridPane quizPane = new GridPane();
     private final GridPane root = new GridPane();
@@ -76,22 +74,22 @@ class QuizMaker extends Pane {
     private void layoutSetup() {
         // Table layout-------------------------------------------------------------------------------------------------
         tableView.setItems(list);
-        tableView.setPrefHeight(bounds.getHeight() / 2 - 50);
-        tableView.setPrefWidth(bounds.getWidth() / 2 - 20);
+        tableView.setPrefHeight(SCREEN_HEIGHT / 2 - 50);
+        tableView.setPrefWidth(SCREEN_WIDTH / 2 - 20);
         tableView.getColumns().addAll(questionColumn, answerColumn, resultColumn);
         //--------------------------------------------------------------------------------------------------------------
 
         // QuizPane layout----------------------------------------------------------------------------------------------
         quizPane.setPadding(new Insets(0, 10, 0, 10));
-        quizPane.setPrefHeight(bounds.getHeight() / 2 - 50);
-        quizPane.setPrefWidth(bounds.getWidth() / 2 - 20);
+        quizPane.setPrefHeight(SCREEN_HEIGHT / 2 - 50);
+        quizPane.setPrefWidth(SCREEN_WIDTH / 2 - 20);
         quizPane.add(tableView, 0, 0);
         //--------------------------------------------------------------------------------------------------------------
 
         // ScorePane layout---------------------------------------------------------------------------------------------
         scorePane.setPadding(new Insets(5, 100, 0, 200));
         scorePane.setHgap(50);
-        scorePane.setPrefWidth(bounds.getWidth() / 2);
+        scorePane.setPrefWidth(SCREEN_WIDTH / 2);
         scorePane.setPrefHeight(35);
         scorePane.add(newQuiz, 0, 0);
         scorePane.add(score, 1, 0);
@@ -100,8 +98,8 @@ class QuizMaker extends Pane {
         //--------------------------------------------------------------------------------------------------------------
 
         // Root layout--------------------------------------------------------------------------------------------------
-        root.setPrefHeight(bounds.getHeight() / 2);
-        root.setPrefWidth(bounds.getWidth() / 2);
+        root.setPrefHeight(SCREEN_HEIGHT / 2);
+        root.setPrefWidth(SCREEN_WIDTH / 2);
         root.add(scorePane, 0, 0);
         root.add(quizPane, 0, 1);
         getChildren().add(root);
