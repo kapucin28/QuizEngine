@@ -15,5 +15,7 @@ public interface CQInterface {
     String q3 = "Java = programming language";
     String q4 = "Java != programming language";
     String q5 = "This is a cool app";
+    String CSSFile = "CSS.css";
+    String stageTitle = "Quiz Maker";
 
 }

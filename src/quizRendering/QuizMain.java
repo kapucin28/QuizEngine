@@ -1,6 +1,7 @@
 package quizRendering;
 
 import alerts.ExitAlert;
+import interfaces.CQInterface;
 import interfaces.Scale;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -37,8 +38,8 @@ public class QuizMain extends Application implements Scale {
     // Stage layout setup-----------------------------------------------------------------------------------------------
     private void layoutSetup() {
         pane.getChildren().add(new QuizMaker());
-        scene.getStylesheets().add(getClass().getResource("CSS.css").toExternalForm());
-        stage.setTitle("Quiz Maker");
+        scene.getStylesheets().add(getClass().getResource(CQInterface.CSSFile).toExternalForm());
+        stage.setTitle(CQInterface.stageTitle);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(e -> {
