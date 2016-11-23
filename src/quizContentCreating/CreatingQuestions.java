@@ -1,5 +1,7 @@
 package quizContentCreating;
 
+import interfaces.CQInterface;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -12,7 +14,7 @@ public class CreatingQuestions {
 
     // Managing questions variables-------------------------------------------------------------------------------------
     private String question;
-    private static final String path = "D:/Downloads/quiz.dat";  // Any location & filename
+    private static final String path = CQInterface.savingPath;  // Any location & filename
     private static RandomAccessFile file;
     //------------------------------------------------------------------------------------------------------------------
 
@@ -30,7 +32,7 @@ public class CreatingQuestions {
     // Writing questions to file method---------------------------------------------------------------------------------
     private static void writeToFile(String path, String data, int position) {
         try {
-            file = new RandomAccessFile(path, "rw");
+            file = new RandomAccessFile(path, CQInterface.readWrite);
             file.seek(position);
             file.write(data.getBytes());
             file.close();
@@ -42,7 +44,7 @@ public class CreatingQuestions {
 
     // Reading questions method-----------------------------------------------------------------------------------------
     private static byte[] readFromFile(String path, int position, int size) throws IOException {
-        file = new RandomAccessFile(path, "r");
+        file = new RandomAccessFile(path, CQInterface.read);
         file.seek(position);
         byte[] bytes = new byte[size];
         file.read(bytes);
@@ -53,11 +55,11 @@ public class CreatingQuestions {
 
     // Questions--------------------------------------------------------------------------------------------------------
     private void quizQuestions() {
-        writeToFile(path, "1 = 1", 0);
-        writeToFile(path, "1 != 1", 6);
-        writeToFile(path, "Java = programming language", 13);
-        writeToFile(path, "Java != programming language", 41);
-        writeToFile(path, "This is a cool app", 69);
+        writeToFile(path, CQInterface.q1, 0);
+        writeToFile(path, CQInterface.q2, 6);
+        writeToFile(path, CQInterface.q3, 13);
+        writeToFile(path, CQInterface.q4, 41);
+        writeToFile(path, CQInterface.q5, 69);
     }
     //------------------------------------------------------------------------------------------------------------------
 
