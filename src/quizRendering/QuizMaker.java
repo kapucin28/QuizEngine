@@ -1,6 +1,7 @@
 package quizRendering;
 
 import alerts.EmptyAlert;
+import interfaces.CQInterface;
 import interfaces.Scale;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -41,16 +42,16 @@ class QuizMaker extends Pane implements Scale{
 
     // Score & user actions variables-----------------------------------------------------------------------------------
     private Label score = new Label();
-    private Label pointsLabel = new Label("points");
-    private final Button newQuiz = new Button("New Quiz");
-    private final Button submit = new Button("Submit");
+    private Label pointsLabel = new Label(CQInterface.pointsLabel);
+    private final Button newQuiz = new Button(CQInterface.newQuiz);
+    private final Button submit = new Button(CQInterface.submit);
     //------------------------------------------------------------------------------------------------------------------
 
     // Table variables--------------------------------------------------------------------------------------------------
     private TableView<QuizContent> tableView = new TableView<>();
-    private TableColumn<QuizContent, String> questionColumn = new TableColumn<>("Question");
-    private TableColumn<QuizContent, String> answerColumn = new TableColumn<>("Answer");
-    private TableColumn<QuizContent, String> resultColumn = new TableColumn<>("Result");
+    private TableColumn<QuizContent, String> questionColumn = new TableColumn<>(CQInterface.questionColumn);
+    private TableColumn<QuizContent, String> answerColumn = new TableColumn<>(CQInterface.answerColumn);
+    private TableColumn<QuizContent, String> resultColumn = new TableColumn<>(CQInterface.resultColumn);
     private ObservableList<QuizContent> list = FXCollections.observableArrayList();
     //------------------------------------------------------------------------------------------------------------------
 
@@ -112,9 +113,9 @@ class QuizMaker extends Pane implements Scale{
         tableView.setEditable(true);
         answerColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        questionColumn.setCellValueFactory(new PropertyValueFactory<>("question"));
-        answerColumn.setCellValueFactory(new PropertyValueFactory<>("answer"));
-        resultColumn.setCellValueFactory(new PropertyValueFactory<>("result"));
+        questionColumn.setCellValueFactory(new PropertyValueFactory<>(CQInterface.questionCellValue));
+        answerColumn.setCellValueFactory(new PropertyValueFactory<>(CQInterface.answerCellValue));
+        resultColumn.setCellValueFactory(new PropertyValueFactory<>(CQInterface.resultCellValue));
 
         questionColumn.setPrefWidth(465);
         answerColumn.setPrefWidth(100);
