@@ -159,40 +159,40 @@ class QuizMaker extends Pane implements Scale{
         submit.setOnAction(e -> {
             IntegerProperty x = new SimpleIntegerProperty(0);
             for (QuizContent q : list) {
-                if (q.getQuestion().contains("1 = 1") && q.getAnswer().equals("true")) {
+                if (q.getQuestion().contains(CQInterface.q1) && q.getAnswer().equals(CQInterface.trueStatement)) {
                     x.set(x.get() + 1);
                     score.setText(Integer.toString(x.get()));
                 }
-                if (q.getQuestion().contains("1 = 1") && !q.getAnswer().equals("true")) {
-                    q.setResult("true");
+                if (q.getQuestion().contains(CQInterface.q1) && !q.getAnswer().equals(CQInterface.trueStatement)) {
+                    q.setResult(CQInterface.trueStatement);
                 }
-                if (q.getQuestion().contains("1 != 1") && q.getAnswer().equals("false")) {
+                if (q.getQuestion().contains(CQInterface.q2) && q.getAnswer().equals(CQInterface.falseStatement)) {
                     x.set(x.get() + 1);
                     score.setText(Integer.toString(x.get()));
                 }
-                if (q.getQuestion().contains("1 != 1") && !q.getAnswer().equals("false")) {
-                    q.setResult("true");
+                if (q.getQuestion().contains(CQInterface.q2) && !q.getAnswer().equals(CQInterface.falseStatement)) {
+                    q.setResult(CQInterface.trueStatement);
                 }
-                if (q.getQuestion().contains("Java = programming language") && q.getAnswer().equals("true")) {
+                if (q.getQuestion().contains(CQInterface.q3) && q.getAnswer().equals(CQInterface.trueStatement)) {
                     x.set(x.get() + 1);
                     score.setText(Integer.toString(x.get()));
                 }
-                if (q.getQuestion().contains("Java = programming language") && !q.getAnswer().equals("true")) {
-                    q.setResult("true");
+                if (q.getQuestion().contains(CQInterface.q3) && !q.getAnswer().equals(CQInterface.trueStatement)) {
+                    q.setResult(CQInterface.trueStatement);
                 }
-                if (q.getQuestion().contains("Java != programming language") && q.getAnswer().equals("false")) {
+                if (q.getQuestion().contains(CQInterface.q4) && q.getAnswer().equals(CQInterface.falseStatement)) {
                     x.set(x.get() + 1);
                     score.setText(Integer.toString(x.get()));
                 }
-                if (q.getQuestion().contains("Java != programming language") && !q.getAnswer().equals("false")) {
-                    q.setResult("true");
+                if (q.getQuestion().contains(CQInterface.q4) && !q.getAnswer().equals(CQInterface.falseStatement)) {
+                    q.setResult(CQInterface.trueStatement);
                 }
-                if (q.getQuestion().contains("This is a cool app") && q.getAnswer().equals("true")) {
+                if (q.getQuestion().contains(CQInterface.q5) && q.getAnswer().equals(CQInterface.trueStatement)) {
                     x.set(x.get() + 1);
                     score.setText(Integer.toString(x.get()));
                 }
-                if (q.getQuestion().contains("This is a cool app") && !q.getAnswer().equals("true")) {
-                    q.setResult("true");
+                if (q.getQuestion().contains(CQInterface.q5) && !q.getAnswer().equals(CQInterface.trueStatement)) {
+                    q.setResult(CQInterface.trueStatement);
                 }
                 tableView.refresh();
             }
