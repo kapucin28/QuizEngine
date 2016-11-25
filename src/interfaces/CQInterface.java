@@ -26,5 +26,7 @@ public interface CQInterface {
     String questionCellValue = "question";
     String answerCellValue = "answer";
     String resultCellValue = "result";
+    String trueStatement = "true";
+    String falseStatement = "false";
 
 }
