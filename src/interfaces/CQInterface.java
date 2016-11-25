@@ -17,5 +17,14 @@ public interface CQInterface {
     String q5 = "This is a cool app";
     String CSSFile = "CSS.css";
     String stageTitle = "Quiz Maker";
+    String pointsLabel = "points";
+    String newQuiz = "New Quiz";
+    String submit = "Submit";
+    String questionColumn = "Question";
+    String answerColumn = "Answer";
+    String resultColumn = "Result";
+    String questionCellValue = "question";
+    String answerCellValue = "answer";
+    String resultCellValue = "result";
 
 }
